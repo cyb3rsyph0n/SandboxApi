@@ -1,6 +1,14 @@
+using SandboxApi;
 using SandboxApi.Core.DIInterfaces;
 
+var config = Configuration.LoadConfiguration();
 var builder = WebApplication.CreateBuilder(args);
+builder.Host.ConfigureAppConfiguration(
+    configBuilder =>
+    {
+        configBuilder.Sources.Clear();
+        configBuilder.AddConfiguration(config);
+    });
 
 // Add services to the container.
 
