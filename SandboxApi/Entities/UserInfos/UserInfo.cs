@@ -43,4 +43,9 @@ public class UserInfo : BaseEntity
     ///     Users password
     /// </summary>
     public string Password => password;
+
+    /// <summary>
+    ///     This is to test properties aren't mapped by default
+    /// </summary>
+    public string SomeUnMappedProperty { get; set; }
 }
