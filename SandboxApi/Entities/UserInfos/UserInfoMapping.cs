@@ -1,18 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using SandboxApi.Core.BaseTypes;
+using SandboxApi.Core.Extensions;
 
 namespace SandboxApi.Entities.UserInfos;
 
 /// <summary>
 ///     Mapping for UserInfo entity
 /// </summary>
-public class UserInfoMapping : BaseMapping<UserInfo>
+public class UserInfoMapping : IEntityTypeConfiguration<UserInfo>
 {
     /// <inheritdoc />
-    public override void Configure(EntityTypeBuilder<UserInfo> builder)
+    public void Configure(EntityTypeBuilder<UserInfo> builder)
     {
-        base.Configure(builder);
+        builder.RemoveALlProperties();
 
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
         builder.Property(x => x.Created).IsRequired().ValueGeneratedOnAdd();
