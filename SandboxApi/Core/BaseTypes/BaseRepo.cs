@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using SandboxApi.Core.BaseInterfaces;
 
 namespace SandboxApi.Core.BaseTypes;
@@ -62,6 +63,7 @@ public abstract class BaseRepo<TEntity, TMapping> : DbContext, IRepo<TEntity> wh
     {
         logger.LogDebug("Configuring context for {EntityType}", typeof(TEntity).Name);
         optionsBuilder.UseNpgsql(appSettings.ConnectionString);
+        optionsBuilder.LogTo(s=> logger.LogInformation("{Message}", s));
     }
 
     /// <inheritdoc />
